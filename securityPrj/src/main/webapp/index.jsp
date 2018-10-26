@@ -12,8 +12,6 @@
       <br><br>
       <div class="container text-center">
           <h1>Security Prj</h1><br>
-          <h6><a href="#" class="badge badge-pill badge-info">LOGIN</a> 로그인 해주세요.</h6>
-          <!-- <h6>관리자님, 반갑습니다. <a href="#" class="badge badge-pill badge-dark">LOGOUT</a></h6> -->
       </div>
       <br><br>
       <div class="container text-center col-2">
