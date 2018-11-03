@@ -12,6 +12,14 @@
 		    <intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER','ROLE_MEMBER','ROLE_ADMIN')"/>
 		    <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		    <intercept-url pattern="/**" access="permitAll"/>
+		    
+		    <form-login
+		    	username-parameter="loginId"
+		    	password-parameter="loginPwd"
+		    	login-processing-url="/login"
+		    	login-page="/secu/loginPage"
+		    	default-target-url="/"
+		    />
 		</http>
         
         <authentication-manager>
