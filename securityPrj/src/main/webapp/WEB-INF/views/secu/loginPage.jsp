@@ -13,14 +13,14 @@
           <h1>Security Prj</h1><br>
       </div>
       <div class="container col-md-4">
-	      <form class="px-4 py-3">
+	      <form class="px-4 py-3" action="/login" method="post">
 	          <div class="form-group">
 	              <label for="exampleDropdownFormEmail1">ID</label>
-	              <input type="text" class="form-control" placeholder="example">
+	              <input type="text" class="form-control" name="loginId" placeholder="example">
 	          </div>
 	          <div class="form-group">
 	              <label for="exampleDropdownFormPassword1">Password</label>
-	              <input type="password" class="form-control" placeholder="Password">
+	              <input type="password" class="form-control" name="loginPwd" placeholder="Password">
 	          </div>
 	          <div class="form-check">
 	              <label class="form-check-label">
@@ -28,6 +28,7 @@
 	              Remember me
 	              </label>
 	          </div>
+	          <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	          <button type="submit" class="btn btn-primary">Sign in</button>
 	      </form>
 	      <div class="dropdown-divider"></div>
