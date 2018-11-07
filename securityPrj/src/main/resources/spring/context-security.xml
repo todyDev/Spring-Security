@@ -25,6 +25,12 @@
 		    	error-page="/access_denied_page"
 		    />
 		    
+		    <logout
+		    	logout-url="/logout"
+		    	invalidate-session="true"
+		    	logout-success-url="/"
+		    />
+		    
 		</http>
         
         <authentication-manager>
