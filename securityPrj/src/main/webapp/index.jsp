@@ -6,8 +6,10 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
  <%
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	Object principal = auth.getPrincipal();
+	
 	String name = "";
-	if(auth.getPrincipal() != null) {
+	if(principal != null) {
 		name = auth.getName();
 	}
 %>
