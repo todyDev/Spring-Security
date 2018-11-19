@@ -32,14 +32,14 @@
 		    />
 		    
 		</http>
+		
+		<jdbc-user-service data-source-ref="dataSource" id="userService"
+			users-by-username-query="SELECT ID as loginId, PASSWORD as loginPwd, ENABLED FROM user WHERE ID=?"
+			authorities-by-username-query="SELECT ID as loginID, AUTHORITY FROM user WHERE ID=?"
+		/>
         
         <authentication-manager>
-            <authentication-provider>
-                <user-service>
-                    <user name="user" password="userPw" authorities="ROLE_USER"/>
-                    <user name="member" password="memPw" authorities="ROLE_MEMBER"/>
-                    <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-                </user-service>
+            <authentication-provider user-service-ref="userService">
             </authentication-provider>
         </authentication-manager>
     
