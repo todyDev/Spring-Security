@@ -11,8 +11,6 @@ import tody.common.vo.CustomUserDetails;
 
 public class CustomUserDetailsService implements UserDetailsService {
 	
-	Logger log = Logger.getLogger(getClass());
-	
 	@Autowired
 	private UserAuthDAO userAuthDAO;
 
@@ -22,7 +20,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if(user==null) {
 			throw new UsernameNotFoundException(username);
 		}
-		log.debug("user ::::::::::: "+user.getUsername()+"/"+user.getPassword()+"/"+user.getAuthorities());
 		return user;
 	}
 
