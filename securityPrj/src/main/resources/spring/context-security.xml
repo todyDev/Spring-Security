@@ -37,8 +37,6 @@
 		
         <security:authentication-manager>
         	<security:authentication-provider ref="userAuthProvider"/>
-            <security:authentication-provider user-service-ref="userService">
-            </security:authentication-provider>
         </security:authentication-manager>
         
         <bean id="userService" class="tody.common.service.CustomUserDetailsService"/>
