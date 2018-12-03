@@ -35,7 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		log.debug("AuthenticationProvider loadUserByUsername :::::: 3");
 		
-		if(!matchPassword(username, user.getPassword())) {
+		if(!matchPassword(password, user.getPassword())) {
 			log.debug("matchPassword :::::::: false!");
 			throw new BadCredentialsException(username);
 		}
