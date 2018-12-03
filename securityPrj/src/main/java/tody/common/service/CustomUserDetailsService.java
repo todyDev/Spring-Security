@@ -1,5 +1,6 @@
 package tody.common.service;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,12 +11,17 @@ import tody.common.vo.CustomUserDetails;
 
 public class CustomUserDetailsService implements UserDetailsService {
 	
+	Logger log = Logger.getLogger(getClass());
+	
 	@Autowired
 	private UserAuthDAO userAuthDAO;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		CustomUserDetails user = userAuthDAO.getUserById(username);
+		
+		log.debug("loadUserByUsername ::::::: 2");
+		
 		if(user==null) {
 			throw new UsernameNotFoundException(username);
 		}

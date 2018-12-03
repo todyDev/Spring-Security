@@ -28,12 +28,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String username = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
 		
+		log.debug("AuthenticationProvider :::::: 1");
+		
 		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(username);
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
 		
+		log.debug("AuthenticationProvider loadUserByUsername :::::: 3");
+		
 		if(!matchPassword(username, user.getPassword())) {
+			log.debug("matchPassword :::::::: false!");
 			throw new BadCredentialsException(username);
 		}
+		
+		log.debug("matchPassword :::::::: true!");
 		
 		return new UsernamePasswordAuthenticationToken(username, password, authorities);
 	}
@@ -44,6 +51,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	}
 	
 	private boolean matchPassword(String loginPwd, String password) {
+		log.debug("matchPassword :::::::: check!");
 		return loginPwd.equals(password);
 	}
 
