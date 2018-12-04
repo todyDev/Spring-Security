@@ -42,6 +42,6 @@
         </security:authentication-manager>
         
         <bean id="userService" class="tody.common.service.CustomUserDetailsService"/>
-        <bean id="userAuthProvider" class="tody.common.service.CustomAuthenticationProvider"/>
+        <bean id="userAuthProvider" class="tody.common.resolver.CustomAuthenticationProvider"/>
     
 </beans>

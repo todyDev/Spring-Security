@@ -1,4 +1,4 @@
-package tody.common.service;
+package tody.common.resolver;
 
 import java.util.Collection;
 
