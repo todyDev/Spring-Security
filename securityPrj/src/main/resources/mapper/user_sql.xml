@@ -13,4 +13,15 @@
 		]]>
 	</select>
 	
+	<update id="updateFailureCount">
+		<![CDATA[
+			UPDATE
+				user
+			SET
+				FAILURE_CNT = FAILURE_CNT + 1
+			WHERE
+				ID = #{ loginId}
+		]]>
+	</update>
+	
  </mapper>
