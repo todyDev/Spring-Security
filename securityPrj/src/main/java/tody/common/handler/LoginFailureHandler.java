@@ -23,11 +23,13 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		String loginId = request.getParameter("loginId");
 
-		userDeSer.countFailure(loginId);	
-		int cnt = userDeSer.checkFailureCount(loginId);
+		if(exception.getClass().getSimpleName().equals("BadCredentialsException")) {
+			userDeSer.countFailure(loginId);	
+			int cnt = userDeSer.checkFailureCount(loginId);
 			
-		if(cnt==3) {
-			userDeSer.unenabledUsername(loginId);
+			if(cnt==3) {
+				userDeSer.unenabledUsername(loginId);
+			}
 		}
 		
 		request.setAttribute("ID", request.getParameter("loginId"));
