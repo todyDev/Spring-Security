@@ -35,5 +35,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public int checkFailureCount(String loginId) {
 		return userAuthDAO.checkFailureCount(loginId);
 	}
+	
+	public void unenabledUsername(String loginId) {
+		userAuthDAO.updateUnenabled(loginId);
+	}
 
 }

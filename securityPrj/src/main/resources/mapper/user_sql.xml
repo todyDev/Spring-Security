@@ -35,4 +35,15 @@
 		]]>
 	</select>
 	
+	<update id="updateUnenabled">
+		<![CDATA[
+			UPDATE
+				user
+			SET
+				ENABLED = false
+			WHERE
+				ID = #{ loginId}
+		]]>
+	</update>
+	
  </mapper>

@@ -23,5 +23,9 @@ public class UserAuthDAO {
 	public int checkFailureCount(String loginId) {
 		return sqlSession.selectOne("user.checkFailureCount", loginId);
 	}
+	
+	public void updateUnenabled(String loginId) {
+		sqlSession.update("user.updateUnenabled", loginId);
+	}
 
 }
