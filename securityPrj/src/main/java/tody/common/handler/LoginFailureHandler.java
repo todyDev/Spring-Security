@@ -23,7 +23,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		String loginId = request.getParameter("loginId");
 
-		userDeSer.countFailure(loginId);
+		userDeSer.countFailure(loginId);	
+		int cnt = userDeSer.checkFailureCount(loginId);
 		
 		request.setAttribute("ID", request.getParameter("loginId"));
 		request.setAttribute("PASSWORD", request.getParameter("loginPwd"));
