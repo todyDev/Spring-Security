@@ -25,6 +25,10 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 
 		userDeSer.countFailure(loginId);	
 		int cnt = userDeSer.checkFailureCount(loginId);
+			
+		if(cnt==3) {
+			userDeSer.unenabledUsername(loginId);
+		}
 		
 		request.setAttribute("ID", request.getParameter("loginId"));
 		request.setAttribute("PASSWORD", request.getParameter("loginPwd"));
