@@ -40,6 +40,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException(username);
 		}
 		
+		if(!user.isEnabled()) {
+			log.debug("isEnabled :::::::: false!");
+			throw new BadCredentialsException(username);
+		}
+		
 		log.debug("matchPassword :::::::: true!");
 		
 		return new UsernamePasswordAuthenticationToken(username, password, authorities);
