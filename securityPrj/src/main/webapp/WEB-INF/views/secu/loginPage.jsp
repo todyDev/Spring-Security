@@ -17,16 +17,16 @@
 	      <form class="px-4 py-3" action="/login" method="post">
 	          <div class="form-group">
 	              <label for="exampleDropdownFormEmail1">ID</label>
-	              <input type="text" class="form-control" name="loginId" placeholder="example">
+	              <input type="text" class="form-control" name="loginId" placeholder="example" value="${ID }">
 	          </div>
 	          <div class="form-group">
 	              <label for="exampleDropdownFormPassword1">Password</label>
-	              <input type="password" class="form-control" name="loginPwd" placeholder="Password">
+	              <input type="password" class="form-control" name="loginPwd" placeholder="Password" value="${PASSWORD }">
 	          </div>
-				<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+				<c:if test="${not empty ERRORMSG}">
 					<font color="red">
 				  		<p>Your login attempt was not successful due to <br/>
-				  		${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+				  		${ERRORMSG }</p>
 						<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
 					</font>
 				</c:if>
