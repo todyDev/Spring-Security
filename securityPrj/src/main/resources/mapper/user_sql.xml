@@ -24,4 +24,15 @@
 		]]>
 	</update>
 	
+		<select id="checkFailureCount" resultType="Integer">
+		<![CDATA[
+			SELECT
+				FAILURE_CNT
+			FROM
+				user
+			WHERE
+				ID=#{ loginId}
+		]]>
+	</select>
+	
  </mapper>
