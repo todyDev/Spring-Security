@@ -2,6 +2,8 @@ package tody.common.resolver;
 
 import java.util.Collection;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,11 +14,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import tody.common.service.UserService;
 import tody.common.vo.CustomUserDetails;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	Logger log = Logger.getLogger(getClass());
+	
+	@Resource(name="userSer")
+	private UserService userSer;
 	
 	@Autowired
 	private UserDetailsService userDeSer;
@@ -37,6 +43,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		if(!matchPassword(password, user.getPassword())) {
 			log.debug("matchPassword :::::::: false!");
+			userSer.countFailure(username);
+			int cnt = userSer.checkFailureCount(username);
+			if(cnt==3) {
+				userSer.disabledUsername(username);
+			}
 			throw new BadCredentialsException(username);
 		}
 		
