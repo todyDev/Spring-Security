@@ -16,16 +16,16 @@ public class UserAuthDAO {
 		return sqlSession.selectOne("user.selectUserById", username);
 	}
 
-	public void updateFailureCount(String loginId) {
-		sqlSession.update("user.updateFailureCount", loginId);
+	public void updateFailureCount(String username) {
+		sqlSession.update("user.updateFailureCount", username);
 	}
 	
-	public int checkFailureCount(String loginId) {
-		return sqlSession.selectOne("user.checkFailureCount", loginId);
+	public int checkFailureCount(String username) {
+		return sqlSession.selectOne("user.checkFailureCount", username);
 	}
 	
-	public void updateUnenabled(String loginId) {
-		sqlSession.update("user.updateUnenabled", loginId);
+	public void updateDisabled(String username) {
+		sqlSession.update("user.updateUnenabled", username);
 	}
 
 }
