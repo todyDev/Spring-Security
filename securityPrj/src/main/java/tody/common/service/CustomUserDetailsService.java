@@ -2,7 +2,6 @@ package tody.common.service;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,27 +18,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		CustomUserDetails user = userAuthDAO.getUserById(username);
 		
 		log.debug("loadUserByUsername ::::::: 2");
 		
+		CustomUserDetails user = userAuthDAO.getUserById(username);
+		
 		if(user==null) {
-			log.debug("no user :::::::: ");
-			throw new InternalAuthenticationServiceException(username);
+			log.debug("no user :::::::: AuthenticationProvider");
+			throw new UsernameNotFoundException(username);
 		}
+
 		return user;
-	}
-	
-	public void countFailure(String loginId) {
-		userAuthDAO.updateFailureCount(loginId);
-	}
-	
-	public int checkFailureCount(String loginId) {
-		return userAuthDAO.checkFailureCount(loginId);
-	}
-	
-	public void unenabledUsername(String loginId) {
-		userAuthDAO.updateUnenabled(loginId);
 	}
 
 }
