@@ -37,6 +37,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		log.debug("AuthenticationProvider :::::: 1");
 		
 		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(username);
+		
+		if(!user.isEnabled() || !user.isCredentialsNonExpired()) {
+			log.debug("isEnabled or isCredentialsNonExpired :::::::: false!");
+			throw new BadCredentialsException(username);
+		}
+		
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
 		
 		log.debug("AuthenticationProvider loadUserByUsername :::::: 3");
@@ -48,11 +54,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			if(cnt==3) {
 				userSer.disabledUsername(username);
 			}
-			throw new BadCredentialsException(username);
-		}
-		
-		if(!user.isEnabled()) {
-			log.debug("isEnabled :::::::: false!");
 			throw new BadCredentialsException(username);
 		}
 		

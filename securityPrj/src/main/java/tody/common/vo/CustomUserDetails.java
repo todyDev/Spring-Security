@@ -14,6 +14,7 @@ public class CustomUserDetails implements UserDetails {
 	private String PASSWORD;
 	private String AUTHORITY;
 	private boolean ENABLED;
+	private boolean CREDEXPI;
 	private String NAME;
 	
 	@Override
@@ -45,7 +46,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return true;
+		return CREDEXPI;
 	}
 
 	@Override
