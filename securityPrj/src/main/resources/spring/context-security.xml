@@ -22,6 +22,7 @@
 		    	login-page="/secu/loginPage"
 		    	default-target-url="/"
 		    	authentication-failure-handler-ref="loginFailureHandler"
+		    	authentication-success-handler-ref="loginSuccessHandler"
 		    />
 		    
 		    <security:access-denied-handler
@@ -46,5 +47,8 @@
         <bean id="userAuthProvider" class="tody.common.resolver.CustomAuthenticationProvider"/>
         
         <bean id="loginFailureHandler" class="tody.common.handler.LoginFailureHandler"/>
+        <bean id="loginSuccessHandler" class="tody.common.handler.LoginSuccessHandler">
+        	<property name="defaultUrl" value="/"/>
+        </bean>
     
 </beans>
