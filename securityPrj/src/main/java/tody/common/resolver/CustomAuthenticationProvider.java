@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,7 +41,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		if(!user.isEnabled() || !user.isCredentialsNonExpired()) {
 			log.debug("isEnabled or isCredentialsNonExpired :::::::: false!");
-			throw new BadCredentialsException(username);
+			throw new AuthenticationCredentialsNotFoundException(username);
 		}
 		
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
