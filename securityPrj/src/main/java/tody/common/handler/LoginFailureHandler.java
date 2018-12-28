@@ -26,6 +26,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
 		
+		String username = request.getParameter(loginidname);
+		String password = request.getParameter(loginpwdname);
 		String errormsg = null;
 		
 		if(exception instanceof BadCredentialsException) {
@@ -38,10 +40,10 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 			errormsg = MessageUtils.getMessage("error.CredentialsExpired");
 		}
 		
-		request.setAttribute("ID", request.getParameter("loginId"));
-		request.setAttribute("PASSWORD", request.getParameter("loginPwd"));
-		request.setAttribute("ERRORMSG", errormsg);
-		request.getRequestDispatcher("/secu/loginPage?error").forward(request, response);
+		request.setAttribute(loginidname, username);
+		request.setAttribute(loginpwdname, password);
+		request.setAttribute(errormsgname, errormsg);
+		request.getRequestDispatcher(defaultFailureUrl).forward(request, response);
 	}
 
 	public String getLoginidname() {
