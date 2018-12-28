@@ -2,6 +2,7 @@ package tody.common.handler;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
+import tody.common.service.UserService;
+
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	
 	Logger log = Logger.getLogger(getClass());
@@ -24,11 +27,19 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	private RequestCache requestCache = new HttpSessionRequestCache();
 	private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
 	
+	private String loginidname;
 	private String defaultUrl;
+	
+	@Resource(name="userSer")
+	private UserService userSer;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		
+		String username = request.getParameter(loginidname);
+		
+		userSer.resetFailureCnt(username);
 		
 		//에러 세션 지우기
 		clearAuthenticationAttributes(request);
@@ -67,6 +78,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	
 	protected void useDefaultUrl(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		redirectStratgy.sendRedirect(request, response, defaultUrl);
+	}
+
+	public String getLoginidname() {
+		return loginidname;
+	}
+
+	public void setLoginidname(String loginidname) {
+		this.loginidname = loginidname;
 	}
 
 	public String getDefaultUrl() {
