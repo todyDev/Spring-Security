@@ -32,4 +32,8 @@ public class UserAuthDAO {
 		sqlSession.update("user.updateFailureCountReset", username);
 	}
 
+	public void updateNewAccessDate(String username) {
+		sqlSession.update("user.updateAccessDate", username);
+	}
+
 }

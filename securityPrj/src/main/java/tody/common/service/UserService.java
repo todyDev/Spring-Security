@@ -10,4 +10,6 @@ public interface UserService {
 
 	void resetFailureCnt(String username);
 
+	void updateAccessDate(String username);
+
 }
