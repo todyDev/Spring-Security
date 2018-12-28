@@ -17,11 +17,11 @@
 	      <form class="px-4 py-3" action="/login" method="post">
 	          <div class="form-group">
 	              <label for="exampleDropdownFormEmail1">ID</label>
-	              <input type="text" class="form-control" name="loginId" placeholder="example" value="${ID }">
+	              <input type="text" class="form-control" name="loginId" placeholder="example" value="${loginId }">
 	          </div>
 	          <div class="form-group">
 	              <label for="exampleDropdownFormPassword1">Password</label>
-	              <input type="password" class="form-control" name="loginPwd" placeholder="Password" value="${PASSWORD }">
+	              <input type="password" class="form-control" name="loginPwd" placeholder="Password" value="${loginPwd }">
 	          </div>
 				<c:if test="${not empty ERRORMSG}">
 					<font color="red">
