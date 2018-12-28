@@ -50,11 +50,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		if(!matchPassword(password, user.getPassword())) {
 			log.debug("matchPassword :::::::: false!");
-			userSer.countFailure(username);
-			int cnt = userSer.checkFailureCount(username);
-			if(cnt==3) {
-				userSer.disabledUsername(username);
-			}
 			throw new BadCredentialsException(username);
 		}
 		

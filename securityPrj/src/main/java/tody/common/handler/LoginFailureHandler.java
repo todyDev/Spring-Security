@@ -2,6 +2,7 @@ package tody.common.handler;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +14,13 @@ import org.springframework.security.authentication.InternalAuthenticationService
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
+import tody.common.service.UserService;
 import tody.common.util.MessageUtils;
 
 public class LoginFailureHandler implements AuthenticationFailureHandler {
+	
+	@Resource(name="userSer")
+	private UserService userSer;
 	
 	private String loginidname;
 	private String loginpwdname;
@@ -31,6 +36,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		String errormsg = null;
 		
 		if(exception instanceof BadCredentialsException) {
+			loginFailureCount(username);
 			errormsg = MessageUtils.getMessage("error.BadCredentials");
 		} else if(exception instanceof InternalAuthenticationServiceException) {
 			errormsg = MessageUtils.getMessage("error.BadCredentials");
@@ -44,6 +50,14 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		request.setAttribute(loginpwdname, password);
 		request.setAttribute(errormsgname, errormsg);
 		request.getRequestDispatcher(defaultFailureUrl).forward(request, response);
+	}
+	
+	protected void loginFailureCount(String username) {
+		userSer.countFailure(username);
+		int cnt = userSer.checkFailureCount(username);
+		if(cnt==3) {
+			userSer.disabledUsername(username);
+		}
 	}
 
 	public String getLoginidname() {
