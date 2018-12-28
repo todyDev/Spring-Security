@@ -8,4 +8,6 @@ public interface UserService {
 
 	void disabledUsername(String username);
 
+	void resetFailureCnt(String username);
+
 }

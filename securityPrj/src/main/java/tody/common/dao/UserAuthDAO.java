@@ -28,4 +28,8 @@ public class UserAuthDAO {
 		sqlSession.update("user.updateUnenabled", username);
 	}
 
+	public void updateFailureCountReset(String username) {
+		sqlSession.update("user.updateFailureCountReset", username);
+	}
+
 }
