@@ -48,6 +48,7 @@
         
         <bean id="loginFailureHandler" class="tody.common.handler.LoginFailureHandler"/>
         <bean id="loginSuccessHandler" class="tody.common.handler.LoginSuccessHandler">
+        	<property name="loginidname" value="loginId"/>
         	<property name="defaultUrl" value="/"/>
         </bean>
     
