@@ -46,4 +46,15 @@
 		]]>
 	</update>
 	
+	<update id="updateFailureCountReset">
+		<![CDATA[
+			UPDATE
+				user
+			SET
+				FAILURE_CNT = 0
+			WHERE
+				ID = #{ loginId}
+		]]>
+	</update>
+	
  </mapper>
