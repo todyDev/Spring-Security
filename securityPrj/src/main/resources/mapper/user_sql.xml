@@ -57,4 +57,15 @@
 		]]>
 	</update>
 	
+	<update id="updateAccessDate">
+		<![CDATA[
+			UPDATE
+				user
+			SET
+				ACCESS_DATE = SYSDATE()
+			WHERE
+				ID = #{ loginId}
+		]]>
+	</update>
+	
  </mapper>

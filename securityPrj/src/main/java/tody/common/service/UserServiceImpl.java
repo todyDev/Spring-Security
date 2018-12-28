@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
 		userDAO.updateFailureCountReset(username);
 	}
 
+	@Override
+	public void updateAccessDate(String username) {
+		userDAO.updateNewAccessDate(username);
+	}
+
 }

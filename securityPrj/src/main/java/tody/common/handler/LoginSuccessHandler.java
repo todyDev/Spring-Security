@@ -40,6 +40,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		String username = request.getParameter(loginidname);
 		
 		userSer.resetFailureCnt(username);
+		userSer.updateAccessDate(username);
 		
 		//에러 세션 지우기
 		clearAuthenticationAttributes(request);
