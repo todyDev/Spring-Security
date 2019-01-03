@@ -27,7 +27,6 @@
 					<font color="red">
 				  		<p>Your login attempt was not successful due to <br/>
 				  		${ERRORMSG }</p>
-						<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
 					</font>
 				</c:if>
 	          <div class="form-check">
