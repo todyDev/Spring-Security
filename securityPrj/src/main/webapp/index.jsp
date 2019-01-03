@@ -28,7 +28,7 @@
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
           	<h5><%=name %>님, 반갑습니다.</h5>
-	        <form action="/logout" method="POST">
+	        <form action='<c:url value="/logout"/>' method="POST">
 	                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	                <button type="submit" class="btn btn-dark btn-sm">LOGOUT</button>
 	        </form>

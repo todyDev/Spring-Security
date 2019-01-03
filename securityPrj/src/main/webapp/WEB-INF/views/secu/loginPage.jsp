@@ -14,7 +14,7 @@
           <h1>Security Prj</h1><br>
       </div>
       <div class="container col-md-4">
-	      <form class="px-4 py-3" action="/login" method="post">
+	      <form class="px-4 py-3" action='<c:url value="/login"/>' method="post">
 	          <div class="form-group">
 	              <label for="exampleDropdownFormEmail1">ID</label>
 	              <input type="text" class="form-control" name="loginId" placeholder="example" value="${loginId }">
