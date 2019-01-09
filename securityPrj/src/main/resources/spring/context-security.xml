@@ -20,7 +20,6 @@
 		    	password-parameter="loginPwd"
 		    	login-processing-url="/login"
 		    	login-page="/secu/loginPage"
-		    	default-target-url="/"
 		    	authentication-failure-handler-ref="loginFailureHandler"
 		    	authentication-success-handler-ref="loginSuccessHandler"
 		    />
