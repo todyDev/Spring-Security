@@ -34,6 +34,13 @@
 		    	logout-success-url="/"
 		    />
 		    
+		    <security:session-management>
+		    	<security:concurrency-control
+		    		max-sessions="1"
+		    		error-if-maximum-exceeded="true"
+		    	/>
+		    </security:session-management>
+		    
 		</security:http>
 		
         <security:authentication-manager>
