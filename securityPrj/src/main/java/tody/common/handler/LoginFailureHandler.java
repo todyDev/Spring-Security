@@ -13,6 +13,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 
 import tody.common.service.UserService;
 import tody.common.util.MessageUtils;
@@ -44,6 +45,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 			errormsg = MessageUtils.getMessage("error.Disaled");
 		} else if(exception instanceof CredentialsExpiredException) {
 			errormsg = MessageUtils.getMessage("error.CredentialsExpired");
+		} else if(exception instanceof SessionAuthenticationException) {
+			errormsg = MessageUtils.getMessage("error.SessionAuthentication");
 		}
 		
 		request.setAttribute(loginidname, username);
