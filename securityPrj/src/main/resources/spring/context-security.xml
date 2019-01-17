@@ -62,5 +62,7 @@
         	<property name="loginidname" value="loginId"/>
         	<property name="defaultUrl" value="/"/>
         </bean>
+        
+        <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     
 </beans>
