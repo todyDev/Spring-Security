@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import tody.common.service.UserService;
 import tody.common.vo.CustomUserDetails;
@@ -27,6 +28,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	@Autowired
 	private UserDetailsService userDeSer;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -48,7 +52,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		log.debug("AuthenticationProvider loadUserByUsername :::::: 3");
 		
-		if(!matchPassword(password, user.getPassword())) {
+		if(!passwordEncoder.matches(password, user.getPassword())) {
 			log.debug("matchPassword :::::::: false!");
 			throw new BadCredentialsException(username);
 		}
@@ -61,11 +65,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return true;
-	}
-	
-	private boolean matchPassword(String loginPwd, String password) {
-		log.debug("matchPassword :::::::: check!");
-		return loginPwd.equals(password);
 	}
 
 }

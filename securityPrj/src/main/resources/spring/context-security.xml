@@ -46,6 +46,7 @@
         <security:authentication-manager>
         	<security:authentication-provider ref="userAuthProvider"/>
         	<security:authentication-provider user-service-ref="userService">
+        		<security:password-encoder ref="bcryptPasswordEncoder"/>
         	</security:authentication-provider>
         </security:authentication-manager>
         
@@ -62,5 +63,7 @@
         	<property name="loginidname" value="loginId"/>
         	<property name="defaultUrl" value="/"/>
         </bean>
+        
+        <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     
 </beans>
